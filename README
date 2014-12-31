@@ -1,0 +1,75 @@
+Tools available:
+
+** Search NED or Simbad for particular source and its RADEC
+[ ] python find_source.py
+Usage: find_source.py [options]
+
+Options:
+  -h, --help           show this help message and exit
+  --source=SOURCE      specify target to search in online database
+  --database=DATABASE  specify online database: NED, Simbad, Vizier
+
+Sample output:
+[ ]$ python find_source.py --source=Crab --database=NED
+[SearchSource] Searching Crab in NED database ...
+[SearchSource] Done
+Requested source name: Crab
+Found source name: MESSIER 001
+RA: 83.63321
+DEC: 22.01446
+
+In case you want to use it with 'get_fermi_data.py'
+	--source=Crab --ra=83.63321 --dec=22.01446
+
+
+** Search and fetch Fermi/LAT data
+[ ]$ python ~/Soft/FermiTools/get_fermi_data.py 
+Usage: get_fermi_data.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  --source=SOURCE       source name
+  --ra=RA               RA [deg]
+  --dec=DEC             DEC [deg]
+  --time-format=TIME_FORMAT
+                        time_format: ISO or MET
+  --tstart=TIME_START   start time in choosen format
+  --tstop=TIME_STOP     end time in choosen format
+  --emin=ENERGY_MIN     minimal energy in MeV
+  --emax=ENERGY_MAX     maximal energy in MeV
+  --roi=ROI             ROI in degrees
+  --dir=DIR             download directory
+
+
+Sample output:
+[ ]$ python get_fermi_data.py --source=Crab --ra=83.63321 --dec=22.01446 --time-format=ISO --tstart='2011-04-01 00:00:00' --tstop='2011-05-01 00:00:00' --emin=100. --emax=100000. --roi=10. --dir='$HOME/Work/FermiLAT_tutorial/crab_outburst_data'
+
+
+Let's try to download Fermi data for these settings
+source 	 Crab
+RA 	 83.63321 deg
+DEC 	 22.01446 deg
+min energy 	 100. MeV
+max energy 	 100000. MeV
+time format 	 ISO
+time start 	 323308800.0 (MET) - 2011-04-01 00:00:00 (ISO)
+time stop 	 325900800.0 (MET) - 2011-05-01 00:00:00 (ISO)
+ROI 	 10.
+
+
+Getting results from LAT Data Server - this may take a while depending on the size of requested data. Be patient.
+Done
+Files to download: 
+http://fermi.gsfc.nasa.gov/FTP/fermi/data/lat/queries/L141231120815E450D3D157_SC00.fits
+http://fermi.gsfc.nasa.gov/FTP/fermi/data/lat/queries/L141231120815E450D3D157_PH00.fits
+... and a webpage with results:
+http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/QueryResults.cgi?id=L141231120917E450D3D148
+Creating directory '$HOME/Work/FermiLAT_tutorial/crab_outburst_data'
+
+Downloading ... 
+L141231120815E450D3D157_SC00.fits                                |  11 MB  00:00:18     
+L141231120815E450D3D157_PH00.fits                                |  17 MB  00:00:29     
+Done
+
+PH files list: $HOME/Work/FermiLAT_tutorial/crab_outburst_data/Crab.filelist
+SC file: $HOME/Work/FermiLAT_tutorial/crab_outburst_data/L141231120815E450D3D157_SC00.fits
